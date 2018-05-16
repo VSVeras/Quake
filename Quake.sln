@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quake", "Quake\Quake.csproj", "{C8C120F1-D18B-4AC5-983C-9C3F6536CF8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quake.UnitTests", "Quake.UnitTests\Quake.UnitTests.csproj", "{EB689FA3-65C3-445F-9F5D-1E5E84DC3889}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C8C120F1-D18B-4AC5-983C-9C3F6536CF8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8C120F1-D18B-4AC5-983C-9C3F6536CF8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8C120F1-D18B-4AC5-983C-9C3F6536CF8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB689FA3-65C3-445F-9F5D-1E5E84DC3889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB689FA3-65C3-445F-9F5D-1E5E84DC3889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB689FA3-65C3-445F-9F5D-1E5E84DC3889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB689FA3-65C3-445F-9F5D-1E5E84DC3889}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
