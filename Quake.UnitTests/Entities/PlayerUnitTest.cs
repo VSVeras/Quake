@@ -25,5 +25,19 @@ namespace Quake.UnitTests.Entities
             Assert.AreEqual(IdPlayerExpected, playerOne.Id);
             Assert.AreEqual(namePlayerExpected, playerOne.Name);
         }
+
+        [TestMethod]
+        public void Deve_permitir_a_alteracao_do_nome_do_participante()
+        {
+            var playerOne = new Player(1, "Veras");
+
+            var IdPlayerExpected = 1;
+            var namePlayerExpected = "Veras, Veranildo";
+
+            playerOne.Changed("Veras, Veranildo");
+
+            Assert.AreEqual(IdPlayerExpected, playerOne.Id);
+            Assert.AreEqual(namePlayerExpected, playerOne.Name);
+        }
     }
 }

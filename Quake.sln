@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quake", "Quake\Quake.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quake.UnitTests", "Quake.UnitTests\Quake.UnitTests.csproj", "{EB689FA3-65C3-445F-9F5D-1E5E84DC3889}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Game", "Game", "{0695865D-E110-43B2-A2C2-28BAEEE893AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C8C120F1-D18B-4AC5-983C-9C3F6536CF8F} = {0695865D-E110-43B2-A2C2-28BAEEE893AB}
+		{EB689FA3-65C3-445F-9F5D-1E5E84DC3889} = {0695865D-E110-43B2-A2C2-28BAEEE893AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BF3030B-F4B6-4940-8B4B-E338EE6E7EF3}
