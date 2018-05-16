@@ -3,10 +3,11 @@ using Quake.Entities;
 
 namespace Quake.UnitTests.Entities
 {
+    [TestClass]
     public class PlayerUnitTest
     {
         [TestMethod]
-        public void Deve_criar_participante_somente_com_identificador()
+        public void Deve_criar_um_jogador_somente_com_o_identificador()
         {
             var playerOne = new Player(1);
             var IdPlayerExpected = 1;
@@ -15,24 +16,22 @@ namespace Quake.UnitTests.Entities
         }
 
         [TestMethod]
-        public void Deve_criar_um_participante_com_identificador_e_nome()
+        public void Deve_criar_um_jogador_com_o_identificador_e_o_nome()
         {
-            var playerOne = new Player(1, "Veras");
-
             var IdPlayerExpected = 1;
             var namePlayerExpected = "Veras";
+            var playerOne = new Player(1, "Veras");
 
             Assert.AreEqual(IdPlayerExpected, playerOne.Id);
             Assert.AreEqual(namePlayerExpected, playerOne.Name);
         }
 
         [TestMethod]
-        public void Deve_permitir_a_alteracao_do_nome_do_participante()
+        public void Deve_permitir_a_alteracao_do_nome_de_um_jogador()
         {
-            var playerOne = new Player(1, "Veras");
-
             var IdPlayerExpected = 1;
             var namePlayerExpected = "Veras, Veranildo";
+            var playerOne = new Player(1, "Veras");
 
             playerOne.Changed("Veras, Veranildo");
 
