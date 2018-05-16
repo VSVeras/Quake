@@ -43,6 +43,7 @@
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValueObjects\ReasonDeath.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

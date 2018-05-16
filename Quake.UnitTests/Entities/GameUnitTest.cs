@@ -80,5 +80,11 @@ namespace Quake.UnitTests.Entities
             Assert.AreEqual(totalPlayersExpected, game.Players.Count());
             Assert.AreEqual(namePlayerExpected, playerTwo.Name);
         }
+
+        [TestMethod]
+        public void Deve_matar_um_jogador_que_estava_ferido_e_caiu_de_uma_altura_que_o_matou()
+        {
+
+        }
     }
 }
