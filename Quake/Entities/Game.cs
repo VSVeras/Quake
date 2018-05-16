@@ -15,15 +15,18 @@ namespace Quake.Entities
 
         public void Add(Player player)
         {
-            _player.Add(player);
+            var onePlayer = _player.FirstOrDefault(atWhere => atWhere.Id == player.Id);
+
+            if (onePlayer == null)
+                _player.Add(player);
         }
 
-        public void RenamePlayer(Player playerOne, string name)
+        public void ChangeNameOf(Player player, string name)
         {
-            var player = _player.FirstOrDefault(atWhere => atWhere.Id == playerOne.Id);
+            var onePlayer = _player.FirstOrDefault(atWhere => atWhere.Id == player.Id);
 
-            if (player != null)
-                player.Changed(name);
+            if (onePlayer != null)
+                onePlayer.Changed(name);
 
         }
     }

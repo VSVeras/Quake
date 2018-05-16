@@ -36,17 +36,49 @@ namespace Quake.UnitTests.Entities
         }
 
         [TestMethod]
-        public void Deve_iniciar_um_jogo_e_permitir_a_alteracao_do_nome_de_um_jogador()
+        public void Deve_iniciar_um_jogo_e_permitir_a_alteracao_do_nome_do_jogador()
         {
             var IdPlayerExpected = 1;
             var namePlayerExpected = "Veras, Veranildo";
             var playerOne = new Player(1, "Veras");
             game.Add(playerOne);
 
-            game.RenamePlayer(playerOne, "Veras, Veranildo");
+            game.ChangeNameOf(playerOne, "Veras, Veranildo");
 
             Assert.AreEqual(IdPlayerExpected, playerOne.Id);
             Assert.AreEqual(namePlayerExpected, playerOne.Name);
+        }
+
+        [TestMethod]
+        public void Deve_iniciar_um_jogo_com_dois_jogadores_diferentes()
+        {
+            var totalPlayersExpected = 2;
+            var playerOne = new Player(1, "Ana Carolina");
+            var playerTwo = new Player(2, "Veras");
+
+            game.Add(playerOne);
+            game.Add(playerTwo);
+            game.ChangeNameOf(playerTwo, "Veras, Veranildo");
+
+            Assert.AreEqual(totalPlayersExpected, game.Players.Count());
+        }
+
+        [TestMethod]
+        public void Deve_iniciar_um_jogo_com_dois_jogadores_diferentes_e_permitir_a_alteracao_do_nome_de_um_jogador()
+        {
+            var totalPlayersExpected = 2;
+            var namePlayerExpected = "Veras, Veranildo";
+            var playerOne = new Player(1, "Ana Carolina");
+            var playerTwo = new Player(2, "Veras");
+
+            game.Add(playerOne);
+            game.Add(playerTwo);
+            game.ChangeNameOf(playerTwo, "Veras, Veranildo");
+
+            //ChangeThePlayerNameTo
+
+            Assert.AreEqual(totalPlayersExpected, game.Players.Count());
+            Assert.AreEqual(namePlayerExpected, playerTwo.Name);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Quake.UnitTests.Entities
         }
 
         [TestMethod]
-        public void Deve_permitir_a_alteracao_do_nome_de_um_jogador()
+        public void Deve_permitir_a_alteracao_do_nome_do_jogador()
         {
             var IdPlayerExpected = 1;
             var namePlayerExpected = "Veras, Veranildo";
