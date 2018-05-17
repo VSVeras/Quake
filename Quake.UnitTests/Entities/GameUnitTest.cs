@@ -9,13 +9,13 @@ namespace Quake.UnitTests.Entities
     public class GameUnitTest
     {
         private Game game;
-        private Player playerOne;
+        private Player killer;
 
         [TestInitialize]
         public void Iniciar()
         {
             game = new Game();
-            playerOne = new Player(1);
+            killer = new Player(1);
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace Quake.UnitTests.Entities
         {
             var totalPlayersExpected = 1;
 
-            game.Add(playerOne);
+            game.Add(killer);
 
             Assert.AreEqual(totalPlayersExpected, game.Players.Count());
         }
@@ -41,24 +41,24 @@ namespace Quake.UnitTests.Entities
         {
             var IdPlayerExpected = 1;
             var namePlayerExpected = "Isgalamido";
-            var playerOne = new Player(1);
-            game.Add(playerOne);
+            var killer = new Player(1);
+            game.Add(killer);
 
-            game.ChangeNameOf(playerOne, "Isgalamido");
+            game.ChangeNameOf(killer, "Isgalamido");
 
-            Assert.AreEqual(IdPlayerExpected, playerOne.Id);
-            Assert.AreEqual(namePlayerExpected, playerOne.Name);
+            Assert.AreEqual(IdPlayerExpected, killer.Id);
+            Assert.AreEqual(namePlayerExpected, killer.Name);
         }
 
         [TestMethod]
         public void Deve_iniciar_um_jogo_com_dois_jogadores_diferentes()
         {
             var totalPlayersExpected = 2;
-            var playerOne = new Player(1, "Isgalamido");
-            var playerTwo = new Player(2, "Dono da Bola");
+            var killer = new Player(1, "Isgalamido");
+            var victim = new Player(2, "Dono da Bola");
 
-            game.Add(playerOne);
-            game.Add(playerTwo);
+            game.Add(killer);
+            game.Add(victim);
 
             Assert.AreEqual(totalPlayersExpected, game.Players.Count());
         }
@@ -68,25 +68,25 @@ namespace Quake.UnitTests.Entities
         {
             var totalPlayersExpected = 2;
             var namePlayerExpected = "Isgalamido";
-            var playerOne = new Player(1, "Dono da Bola");
-            var playerTwo = new Player(2);
+            var killer = new Player(1, "Dono da Bola");
+            var victim = new Player(2);
 
-            game.Add(playerOne);
-            game.Add(playerTwo);
-            game.ChangeNameOf(playerTwo, "Isgalamido");
+            game.Add(killer);
+            game.Add(victim);
+            game.ChangeNameOf(victim, "Isgalamido");
 
             Assert.AreEqual(totalPlayersExpected, game.Players.Count());
-            Assert.AreEqual(namePlayerExpected, playerTwo.Name);
+            Assert.AreEqual(namePlayerExpected, victim.Name);
         }
 
         [TestMethod]
         public void Deve_matar_um_jogador_de_morte_natual_e_atualizar_o_total_das_mortes()
         {
             var totalOfDeadPlayersExpected = 1m;
-            var playerOne = new Player(2, "Isgalamido");
-            game.Add(playerOne);
+            var killer = new Player(2, "Isgalamido");
+            game.Add(killer);
 
-            game.KillByNaturalDeath(playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillByNaturalDeath(killer, MeansOfDeath.MOD_TRIGGER_HURT);
 
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
         }
@@ -95,12 +95,12 @@ namespace Quake.UnitTests.Entities
         public void Deve_um_jogador_matar_outro_jogador_e_atualizar_o_total_das_mortes()
         {
             var totalOfDeadPlayersExpected = 1m;
-            var playerOne = new Player(1, "Dono da Bola");
-            var playerTwo = new Player(2, "Isgalamido");
-            game.Add(playerOne);
-            game.Add(playerTwo);
+            var killer = new Player(1, "Dono da Bola");
+            var victim = new Player(2, "Isgalamido");
+            game.Add(killer);
+            game.Add(victim);
 
-            game.Kill(playerOne, playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
         }
@@ -108,15 +108,18 @@ namespace Quake.UnitTests.Entities
         [TestMethod]
         public void Deve_matar_um_jogador_de_morte_natual_e_subtrair_uma_morte_do_total_agrupados_das_mortes()
         {
-            var totalOfDeadPlayersExpected = 1m;
+            var totalOfDeadPlayersExpected = 2m;
             var totalOfDeathsGroupedPerPlayer = 0m;
-            var playerOne = new Player(2, "Isgalamido");
-            game.Add(playerOne);
+            var killer = new Player(1, "Dono da Bola");
+            var victim = new Player(2, "Isgalamido");
+            game.Add(killer);
+            game.Add(victim);
 
-            game.KillByNaturalDeath(playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
-            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(playerOne));
+            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(victim));
         }
 
         [TestMethod]
@@ -124,15 +127,15 @@ namespace Quake.UnitTests.Entities
         {
             var totalOfDeadPlayersExpected = 1m;
             var totalOfDeathsGroupedPerPlayer = 1m;
-            var playerOne = new Player(1, "Dono da Bola");
-            var playerTwo = new Player(2, "Isgalamido");
-            game.Add(playerOne);
-            game.Add(playerTwo);
+            var killer = new Player(1, "Dono da Bola");
+            var victim = new Player(2, "Isgalamido");
+            game.Add(killer);
+            game.Add(victim);
 
-            game.Kill(playerOne, playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
-            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(playerOne));
+            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(victim));
         }
 
         [TestMethod]
@@ -140,14 +143,14 @@ namespace Quake.UnitTests.Entities
         {
             var totalOfDeadPlayersExpected = 2m;
             var totalOfDeathsGroupedPerPlayer = 0m;
-            var playerOne = new Player(2, "Isgalamido");
-            game.Add(playerOne);
+            var killer = new Player(2, "Isgalamido");
+            game.Add(killer);
 
-            game.KillByNaturalDeath(playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
-            game.KillByNaturalDeath(playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillByNaturalDeath(killer, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillByNaturalDeath(killer, MeansOfDeath.MOD_TRIGGER_HURT);
 
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
-            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(playerOne));
+            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(killer));
         }
 
         [TestMethod]
@@ -155,16 +158,16 @@ namespace Quake.UnitTests.Entities
         {
             var totalOfDeadPlayersExpected = 2m;
             var totalOfDeathsGroupedPerPlayer = 2m;
-            var playerOne = new Player(1, "Dono da Bola");
-            var playerTwo = new Player(2, "Isgalamido");
-            game.Add(playerOne);
-            game.Add(playerTwo);
+            var killer = new Player(1, "Dono da Bola");
+            var victim = new Player(2, "Isgalamido");
+            game.Add(killer);
+            game.Add(victim);
 
-            game.Kill(playerOne, playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
-            game.Kill(playerOne, playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
-            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(playerOne));
+            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(victim));
         }
     }
 }

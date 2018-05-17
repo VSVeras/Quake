@@ -32,9 +32,9 @@ namespace Quake.Entities
                 onePlayer.Changed(name);
         }
 
-        public void Kill(Player killer, Player killed, MeansOfDeath meansOfDeath)
+        public void KillForMurder(Player killer, Player victim, MeansOfDeath meansOfDeath)
         {
-            var playerDeadExist = FindPlayerDead(killed.Id);
+            var playerDeadExist = FindPlayerDead(victim.Id);
             if (playerDeadExist != null)
             {
                 playerDeadExist.Sum();
@@ -42,16 +42,16 @@ namespace Quake.Entities
             else
             {
                 var newPlayerDead = new DeadPlayer();
-                newPlayerDead.Create(killed);
+                newPlayerDead.Create(victim);
                 _deadPlayers.Add(newPlayerDead);
             }
             TotalKills++;
         }
 
 
-        public void KillByNaturalDeath(Player killed, MeansOfDeath mOD_TRIGGER_HURT)
+        public void KillByNaturalDeath(Player victim, MeansOfDeath mOD_TRIGGER_HURT)
         {
-            var playerDeathExist = FindPlayerDead(killed.Id);
+            var playerDeathExist = FindPlayerDead(victim.Id);
             if (playerDeathExist != null)
             {
                 if (playerDeathExist.TotalKills > 0m)
@@ -68,17 +68,18 @@ namespace Quake.Entities
 
         public decimal DeathsGroupedPerPlayer(Player player)
         {
-            decimal totalDeaths = TotalSumOfDeathsGroupedPerPlayer(player);
+            decimal totalDeaths = TotalSumOfDeathsGroupedPerPlayer(player.Id);
             return totalDeaths;
         }
 
 
-        private decimal TotalSumOfDeathsGroupedPerPlayer(Player player)
+        private decimal TotalSumOfDeathsGroupedPerPlayer(int id)
         {
             var totalDeaths = 0m;
-            var playerKilled = _deadPlayers.FirstOrDefault(atWhere => atWhere.Player.Id == player.Id);
+            var playerKilled = _deadPlayers.FirstOrDefault(atWhere => atWhere.Player.Id == id);
             if (playerKilled != null)
                 totalDeaths = playerKilled.TotalKills;
+
             return totalDeaths;
         }
     }
