@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quake.Entities;
+using Quake.ValueObjects;
 using System.Linq;
 
 namespace Quake.UnitTests.Entities
@@ -55,9 +56,9 @@ namespace Quake.UnitTests.Entities
             var totalPlayersExpected = 2;
             var playerOne = new Player(1, "Ana Carolina");
             var playerTwo = new Player(2, "Veras");
-
             game.Add(playerOne);
             game.Add(playerTwo);
+
             game.ChangeNameOf(playerTwo, "Veras, Veranildo");
 
             Assert.AreEqual(totalPlayersExpected, game.Players.Count());
@@ -70,21 +71,27 @@ namespace Quake.UnitTests.Entities
             var namePlayerExpected = "Veras, Veranildo";
             var playerOne = new Player(1, "Ana Carolina");
             var playerTwo = new Player(2, "Veras");
-
             game.Add(playerOne);
             game.Add(playerTwo);
-            game.ChangeNameOf(playerTwo, "Veras, Veranildo");
 
-            //ChangeThePlayerNameTo
+            game.ChangeNameOf(playerTwo, "Veras, Veranildo");
 
             Assert.AreEqual(totalPlayersExpected, game.Players.Count());
             Assert.AreEqual(namePlayerExpected, playerTwo.Name);
         }
 
         [TestMethod]
-        public void Deve_matar_um_jogador_que_estava_ferido_e_caiu_de_uma_altura_que_o_matou()
+        public void Deve_matar_um_jogador_que_estava_ferido_e_caiu_de_uma_altura_e_atualizar_o_total_de_mortes()
         {
+            var totalKills = 1;
+            var playerOne = new Player(1022, "world");
+            var playerTwo = new Player(2, "Veras");
+            game.Add(playerOne);
+            game.Add(playerTwo);
 
+            game.Kill(playerOne, playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
+
+            Assert.AreEqual(totalKills, game.TotalKills);
         }
     }
 }

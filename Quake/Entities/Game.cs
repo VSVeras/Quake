@@ -7,6 +7,7 @@ namespace Quake.Entities
     {
         private readonly List<Player> _player;
         public IEnumerable<Player> Players => _player;
+        public decimal TotalKills { get; private set; }
 
         public Game()
         {
@@ -28,6 +29,11 @@ namespace Quake.Entities
             if (onePlayer != null)
                 onePlayer.Changed(name);
 
+        }
+
+        public void Kill(Player playerOne1, Player playerOne2, object mOD_TRIGGER_HURT)
+        {
+            TotalKills++;
         }
     }
 }

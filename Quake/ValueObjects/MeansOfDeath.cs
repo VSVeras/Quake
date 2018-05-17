@@ -1,6 +1,6 @@
 ﻿namespace Quake.ValueObjects
 {
-    public enum ReasonDeath
+    public enum MeansOfDeath
     {
         MOD_UNKNOWN,
         MOD_SHOTGUN,
