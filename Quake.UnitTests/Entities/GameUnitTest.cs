@@ -81,9 +81,21 @@ namespace Quake.UnitTests.Entities
         }
 
         [TestMethod]
+        public void Deve_morer_um_jogador_por_morte_natual()
+        {
+            var totalOfDeadPlayersExpected = 1m;
+            var playerOne = new Player(2, "Veras");
+            game.Add(playerOne);
+
+            game.KillByNaturalDeath(playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
+
+            Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
+        }
+
+        [TestMethod]
         public void Deve_matar_um_jogador_e_atualizar_o_total_de_mortes()
         {
-            var totalKills = 1;
+            var totalOfDeadPlayersExpected = 1m;
             var playerOne = new Player(1022, "world");
             var playerTwo = new Player(2, "Veras");
             game.Add(playerOne);
@@ -91,7 +103,7 @@ namespace Quake.UnitTests.Entities
 
             game.Kill(playerOne, playerOne, MeansOfDeath.MOD_TRIGGER_HURT);
 
-            Assert.AreEqual(totalKills, game.TotalKills);
+            Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
         }
     }
 }

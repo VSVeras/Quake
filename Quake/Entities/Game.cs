@@ -36,5 +36,10 @@ namespace Quake.Entities
         {
             TotalKills++;
         }
+
+        public void KillByNaturalDeath(Player killed, MeansOfDeath mOD_TRIGGER_HURT)
+        {
+            TotalKills++;
+        }
     }
 }
