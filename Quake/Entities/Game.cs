@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Quake.ValueObjects;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Quake.Entities
@@ -31,7 +32,7 @@ namespace Quake.Entities
 
         }
 
-        public void Kill(Player playerOne1, Player playerOne2, object mOD_TRIGGER_HURT)
+        public void Kill(Player killer, Player killed, MeansOfDeath meansOfDeath)
         {
             TotalKills++;
         }

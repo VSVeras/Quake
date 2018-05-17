@@ -81,7 +81,7 @@ namespace Quake.UnitTests.Entities
         }
 
         [TestMethod]
-        public void Deve_matar_um_jogador_que_estava_ferido_e_caiu_de_uma_altura_e_atualizar_o_total_de_mortes()
+        public void Deve_matar_um_jogador_e_atualizar_o_total_de_mortes()
         {
             var totalKills = 1;
             var playerOne = new Player(1022, "world");
