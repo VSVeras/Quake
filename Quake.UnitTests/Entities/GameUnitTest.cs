@@ -143,14 +143,14 @@ namespace Quake.UnitTests.Entities
         {
             var totalOfDeadPlayersExpected = 2m;
             var totalOfDeathsGroupedPerPlayer = 0m;
-            var killer = new Player(2, "Isgalamido");
-            game.Add(killer);
+            var victim = new Player(2, "Isgalamido");
+            game.Add(victim);
 
-            game.KillByNaturalDeath(killer, MeansOfDeath.MOD_TRIGGER_HURT);
-            game.KillByNaturalDeath(killer, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
-            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(killer));
+            Assert.AreEqual(totalOfDeathsGroupedPerPlayer, game.DeathsGroupedPerPlayer(victim));
         }
 
         [TestMethod]

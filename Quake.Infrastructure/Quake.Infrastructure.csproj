@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C8C120F1-D18B-4AC5-983C-9C3F6536CF8F}</ProjectGuid>
+    <ProjectGuid>{D9190C1C-7316-4C94-ABCA-C9FEBBB6247F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Quake</RootNamespace>
-    <AssemblyName>Quake</AssemblyName>
+    <RootNamespace>Quake.Infrastructure</RootNamespace>
+    <AssemblyName>Quake.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,17 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IGameReader.cs" />
-    <Compile Include="Entities\Contracts\IGames.cs" />
-    <Compile Include="Entities\Game.cs" />
-    <Compile Include="Entities\Player.cs" />
-    <Compile Include="Persistencia\Games.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValueObjects\MeansOfDeath.cs" />
-    <Compile Include="Entities\DeadPlayer.cs" />
+    <Compile Include="Readers\GameReader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Persistence\" />
+    <ProjectReference Include="..\Quake\Quake.csproj">
+      <Project>{c8c120f1-d18b-4ac5-983c-9c3f6536cf8f}</Project>
+      <Name>Quake</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
