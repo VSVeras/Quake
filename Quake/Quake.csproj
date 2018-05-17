@@ -44,13 +44,11 @@
     <Compile Include="Entities\Contracts\IGames.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Player.cs" />
-    <Compile Include="Persistencia\Games.cs" />
+    <Compile Include="Persistence\Games.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValueObjects\MeansOfDeath.cs" />
     <Compile Include="Entities\DeadPlayer.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistence\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

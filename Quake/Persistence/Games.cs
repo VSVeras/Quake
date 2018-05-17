@@ -2,7 +2,7 @@
 using Quake.Entities.Contracts;
 using System.Collections.Generic;
 
-namespace Quake.Persistencia
+namespace Quake.Persistence
 {
     public class Games : IGames
     {
