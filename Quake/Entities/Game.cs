@@ -34,28 +34,32 @@ namespace Quake.Entities
 
         public void KillForMurder(Player killer, Player victim, MeansOfDeath meansOfDeath)
         {
-            var playerDeadExist = FindPlayerDead(victim.Id);
-            if (playerDeadExist != null)
+            var deadPlayerExist = FindPlayerDead(victim.Id);
+            if (deadPlayerExist != null)
             {
-                playerDeadExist.Sum();
+                deadPlayerExist.Sum();
             }
             else
             {
-                var newPlayerDead = new DeadPlayer();
-                newPlayerDead.Create(victim);
-                _deadPlayers.Add(newPlayerDead);
+                AddNewDeadPlayer(victim);
             }
             TotalKills++;
         }
 
+        private void AddNewDeadPlayer(Player victim)
+        {
+            var newDeadPlayer = new DeadPlayer(victim);
+            newDeadPlayer.Sum();
+            _deadPlayers.Add(newDeadPlayer);
+        }
 
         public void KillByNaturalDeath(Player victim, MeansOfDeath mOD_TRIGGER_HURT)
         {
-            var playerDeathExist = FindPlayerDead(victim.Id);
-            if (playerDeathExist != null)
+            var deadPlayerExist = FindPlayerDead(victim.Id);
+            if (deadPlayerExist != null)
             {
-                if (playerDeathExist.TotalKills > 0m)
-                    playerDeathExist.Subtract();
+                if (deadPlayerExist.TotalKills > 0m)
+                    deadPlayerExist.Subtract();
             }
 
             TotalKills++;

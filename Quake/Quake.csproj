@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IGameReader.cs" />
+    <Compile Include="Infrastructure\Contracts\IGamesLogFileReader.cs" />
     <Compile Include="Entities\Contracts\IGames.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Player.cs" />

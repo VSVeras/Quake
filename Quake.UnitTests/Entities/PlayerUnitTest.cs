@@ -19,8 +19,8 @@ namespace Quake.UnitTests.Entities
         public void Deve_criar_um_jogador_com_o_identificador_e_o_nome()
         {
             var IdPlayerExpected = 1;
-            var namePlayerExpected = "Veras";
-            var playerOne = new Player(1, "Veras");
+            var namePlayerExpected = "Isgalamido";
+            var playerOne = new Player(1, "Isgalamido");
 
             Assert.AreEqual(IdPlayerExpected, playerOne.Id);
             Assert.AreEqual(namePlayerExpected, playerOne.Name);
@@ -30,10 +30,10 @@ namespace Quake.UnitTests.Entities
         public void Deve_permitir_a_alteracao_do_nome_do_jogador()
         {
             var IdPlayerExpected = 1;
-            var namePlayerExpected = "Veras, Veranildo";
-            var playerOne = new Player(1, "Veras");
+            var namePlayerExpected = "Isgalamido";
+            var playerOne = new Player(1, "Teste");
 
-            playerOne.Changed("Veras, Veranildo");
+            playerOne.Changed("Isgalamido");
 
             Assert.AreEqual(IdPlayerExpected, playerOne.Id);
             Assert.AreEqual(namePlayerExpected, playerOne.Name);

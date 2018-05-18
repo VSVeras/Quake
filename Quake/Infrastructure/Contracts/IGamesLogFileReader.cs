@@ -1,9 +1,9 @@
 ﻿using Quake.Entities;
 using System.Collections.Generic;
 
-namespace Quake.Contracts
+namespace Quake.Infrastructure.Contracts
 {
-    public interface IGameReader
+    public interface IGamesLogFileReader
     {
         List<Game> Reader();
     }

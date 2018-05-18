@@ -6,6 +6,11 @@
         public Player Player { get; private set; }
         public decimal TotalKills { get; private set; }
 
+        public DeadPlayer(Player killed)
+        {
+            Player = killed;
+        }
+
         public void Subtract()
         {
             TotalKills--;
@@ -14,12 +19,6 @@
         public void Sum()
         {
             TotalKills++;
-        }
-
-        public void Create(Player killed)
-        {
-            Player = killed;
-            Sum();
         }
     }
 }
