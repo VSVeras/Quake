@@ -42,6 +42,9 @@ namespace Quake.Infrastructure.Infrastructure.Readers
                             case "ClientConnect":
                                 MappingPlayes(currentGame, row);
                                 break;
+                            case "ClientUserinfoChanged":
+                                MappingChangedPlayerName(currentGame, row);
+                                break;
                             default:
                                 break;
                         }
@@ -57,7 +60,7 @@ namespace Quake.Infrastructure.Infrastructure.Readers
             }
         }
 
-        private static Game MappingGame(List<Game> games)
+        private Game MappingGame(List<Game> games)
         {
             try
             {
@@ -71,13 +74,34 @@ namespace Quake.Infrastructure.Infrastructure.Readers
             }
         }
 
-        private void MappingPlayes(Game game, string row)
+        private void MappingPlayes(Game currentGame, string row)
         {
             var findText = " ClientConnect: ";
             try
             {
-                int id = Int32.Parse(row.Substring(row.IndexOf(findText) + findText.Length));
-                game.Add(new Player(id));
+                string firstPart = row.Substring(row.IndexOf(findText) + findText.Length);
+                int id = Int32.Parse(firstPart);
+                currentGame.Add(new Player(id));
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        private void MappingChangedPlayerName(Game currentGame, string row)
+        {
+            var findText = " ClientUserinfoChanged: ";
+
+            try
+            {
+                string firstPart = row.Substring(row.IndexOf(findText) + findText.Length);
+                int id = Int32.Parse(firstPart.Substring(0, firstPart.IndexOf(@"n\")));
+
+                firstPart = row.Substring(row.IndexOf(@"n\") + 2);
+                string name = firstPart.Substring(0, firstPart.IndexOf(@"\t\"));
+
+                currentGame.ChangeNameOf(new Player(id), name);
             }
             catch
             {
