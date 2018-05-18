@@ -20,16 +20,21 @@ namespace Quake.Entities
 
         public void Add(Player player)
         {
-            var onePlayer = _player.FirstOrDefault(atWhere => atWhere.Id == player.Id);
+            Player onePlayer = FindPlayer(player.Id);
             if (onePlayer == null)
                 _player.Add(player);
         }
 
         public void ChangeNameOf(Player player, string name)
         {
-            var onePlayer = _player.FirstOrDefault(atWhere => atWhere.Id == player.Id);
+            var onePlayer = FindPlayer(player.Id);
             if (onePlayer != null)
                 onePlayer.Changed(name);
+        }
+
+        private Player FindPlayer(int id)
+        {
+            return _player.FirstOrDefault(atWhere => atWhere.Id == id);
         }
 
         public void KillForMurder(Player killer, Player victim, MeansOfDeath meansOfDeath)
@@ -61,7 +66,6 @@ namespace Quake.Entities
                 if (deadPlayerExist.TotalKills > 0m)
                     deadPlayerExist.Subtract();
             }
-
             TotalKills++;
         }
 
@@ -75,7 +79,6 @@ namespace Quake.Entities
             decimal totalDeaths = TotalSumOfDeathsGroupedPerPlayer(player.Id);
             return totalDeaths;
         }
-
 
         private decimal TotalSumOfDeathsGroupedPerPlayer(int id)
         {

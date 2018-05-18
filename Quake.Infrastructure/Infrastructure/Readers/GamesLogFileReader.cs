@@ -1,20 +1,22 @@
 ﻿using Quake.Entities;
 using Quake.Infrastructure.Contracts;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Quake.Infrastructure.Readers
+namespace Quake.Infrastructure.Infrastructure.Readers
 {
     public class GamesLogFileReader : IGamesLogFileReader
     {
         private readonly string LogFilePath;
-        private readonly Regex actionsGames = new Regex("(InitGame)");
+        private readonly Regex actionsGames;
 
         public GamesLogFileReader(string logFilePath)
         {
             LogFilePath = logFilePath;
+            actionsGames = new Regex("(InitGame|ClientConnect|ClientUserinfoChanged|Kill)");
         }
 
         public List<Game> Reader()
@@ -22,6 +24,7 @@ namespace Quake.Infrastructure.Readers
             try
             {
                 var games = new List<Game>();
+                Game currentGame = null;
 
                 using (StreamReader reader = new StreamReader(LogFilePath, Encoding.UTF8))
                 {
@@ -34,7 +37,10 @@ namespace Quake.Infrastructure.Readers
                         switch (action.Value)
                         {
                             case "InitGame":
-                                games.Add(new Game());
+                                currentGame = MappingGame(games);
+                                break;
+                            case "ClientConnect":
+                                MappingPlayes(currentGame, row);
                                 break;
                             default:
                                 break;
@@ -44,6 +50,34 @@ namespace Quake.Infrastructure.Readers
                     reader.Dispose();
                 }
                 return games;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        private static Game MappingGame(List<Game> games)
+        {
+            try
+            {
+                Game newGame = new Game();
+                games.Add(newGame);
+                return newGame;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        private void MappingPlayes(Game game, string row)
+        {
+            var findText = " ClientConnect: ";
+            try
+            {
+                int id = Int32.Parse(row.Substring(row.IndexOf(findText) + findText.Length));
+                game.Add(new Player(id));
             }
             catch
             {
