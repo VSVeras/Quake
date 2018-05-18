@@ -6,7 +6,7 @@ namespace Quake.Persistence
 {
     public class Games : IGames
     {
-        public void Import(List<Game> games)
+        public void Save(List<Game> games)
         {
             throw new System.NotImplementedException();
         }

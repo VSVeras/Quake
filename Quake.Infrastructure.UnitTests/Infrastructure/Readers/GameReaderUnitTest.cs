@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quake.Entities;
+using Quake.Infrastructure.Contracts;
 using Quake.Infrastructure.Infrastructure.Readers;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,12 @@ namespace Quake.Infrastructure.UnitTests.Infrastructure.Readers
     {
         private List<Game> games;
         private string logFilePath = Environment.CurrentDirectory + @"\Container\games.log";
+        private IGamesLogFileReader logFileReader;
 
         [TestInitialize]
         public void Iniciar()
         {
-            var logFileReader = new GamesLogFileReader(logFilePath);
+            logFileReader = new GamesLogFileReader(logFilePath);
 
             games = logFileReader.Reader();
         }
@@ -24,7 +26,9 @@ namespace Quake.Infrastructure.UnitTests.Infrastructure.Readers
         [TestMethod]
         public void Deve_ler_um_arquivo_de_log_e_retornar_um_jogo()
         {
-            Assert.IsTrue(games.Count > 0);
+            var totalGames = games.Count;
+
+            Assert.IsTrue(totalGames > 0);
         }
 
         [TestMethod]

@@ -21,9 +21,14 @@ namespace Quake.UnitTests.Entities
         [TestMethod]
         public void Deve_iniciar_um_jogo_sem_um_jogador()
         {
+            //arrange - SUT
             var totalPlayersExpected = 0;
 
-            Assert.AreEqual(totalPlayersExpected, game.Players.Count());
+            //act
+            var totalPlayers = game.Players.Count();
+
+            //assert
+            Assert.AreEqual(totalPlayersExpected, totalPlayers);
         }
 
         [TestMethod]
@@ -114,8 +119,8 @@ namespace Quake.UnitTests.Entities
             var victim = new Player(2, "Isgalamido");
             game.Add(killer);
             game.Add(victim);
-
             game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
+
             game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);

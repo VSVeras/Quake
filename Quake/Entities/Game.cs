@@ -20,7 +20,7 @@ namespace Quake.Entities
 
         public void Add(Player player)
         {
-            Player onePlayer = FindPlayer(player.Id);
+            var onePlayer = FindPlayer(player.Id);
             if (onePlayer == null)
                 _player.Add(player);
         }
@@ -53,7 +53,11 @@ namespace Quake.Entities
 
         private void AddNewDeadPlayer(Player victim)
         {
-            var newDeadPlayer = new DeadPlayer(victim);
+            var player = FindPlayer(victim.Id);
+            if (player == null)
+                player = victim;
+
+            var newDeadPlayer = new DeadPlayer(player);
             newDeadPlayer.Sum();
             _deadPlayers.Add(newDeadPlayer);
         }

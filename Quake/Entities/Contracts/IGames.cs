@@ -4,6 +4,6 @@ namespace Quake.Entities.Contracts
 {
     public interface IGames
     {
-        void Import(List<Game> games);
+        void Save(List<Game> games);
     }
 }
