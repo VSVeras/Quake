@@ -13,10 +13,13 @@ namespace Quake.Entities
 
         public virtual List<DeadPlayer> DeadPlayers { get; set; }
 
+        public virtual List<KillsByMeans> KillsByMeans { get; set; }
+
         public Game()
         {
-            DeadPlayers = new List<DeadPlayer>();
             Players = new List<Player>();
+            DeadPlayers = new List<DeadPlayer>();
+            KillsByMeans = new List<KillsByMeans>();
         }
 
 
@@ -51,6 +54,22 @@ namespace Quake.Entities
                 AddNewDeadPlayer(victim);
             }
             TotalKills++;
+            GenerateStatisticsBecauseOfDeath(meansOfDeath);
+        }
+
+        private void GenerateStatisticsBecauseOfDeath(MeansOfDeath meansOfDeath)
+        {
+            var killsByMeans = KillsByMeans.FirstOrDefault(atWhere => atWhere.MeansOfDeath == meansOfDeath);
+            if (killsByMeans != null)
+            {
+                killsByMeans.Sum();
+            }
+            else
+            {
+                var newKillsByMeans = new KillsByMeans(meansOfDeath);
+                newKillsByMeans.Sum();
+                KillsByMeans.Add(newKillsByMeans);
+            }
         }
 
         private void AddNewDeadPlayer(Player victim)
@@ -64,7 +83,7 @@ namespace Quake.Entities
             DeadPlayers.Add(newDeadPlayer);
         }
 
-        public void KillByNaturalDeath(Player victim, MeansOfDeath mOD_TRIGGER_HURT)
+        public void KillByNaturalDeath(Player victim, MeansOfDeath meansOfDeath)
         {
             var deadPlayerExist = FindPlayerDead(victim.Id);
             if (deadPlayerExist != null)
@@ -73,6 +92,7 @@ namespace Quake.Entities
                     deadPlayerExist.Subtract();
             }
             TotalKills++;
+            GenerateStatisticsBecauseOfDeath(meansOfDeath);
         }
 
         private DeadPlayer FindPlayerDead(int id)

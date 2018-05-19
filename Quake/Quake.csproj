@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\KillsByMeans.cs" />
     <Compile Include="Infrastructure\Contracts\IGamesLogFileReader.cs" />
     <Compile Include="Entities\Contracts\IGames.cs" />
     <Compile Include="Entities\Game.cs" />
