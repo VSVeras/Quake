@@ -176,17 +176,19 @@ namespace Quake.UnitTests.Entities
         }
 
         [TestMethod]
-        public void Deve_deve_totalizar_as_mortes_agrupados_por_tipo()
+        public void Deve_totalizar_as_mortes_agrupados_por_tipo()
         {
             var totalMeansOfDeathExpected = 3m;
             var killer = new Player(1, "Dono da Bola");
             var victim = new Player(2, "Isgalamido");
             game.Add(killer);
             game.Add(victim);
-            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
-            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
-            game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_BFG_SPLASH);
+            game.KillByNaturalDeath(victim, MeansOfDeath.MOD_BFG_SPLASH);
+            game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             Assert.AreEqual(totalMeansOfDeathExpected, game.KillsByMeans.Where(c => c.MeansOfDeath == MeansOfDeath.MOD_TRIGGER_HURT).Sum(field => field.TotalKills));
         }

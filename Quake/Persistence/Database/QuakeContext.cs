@@ -12,17 +12,17 @@
             Configuration.LazyLoadingEnabled = false;
         }
 
-        public virtual DbSet<DeadPlayer> DeadPlayers { get; set; }
         public virtual DbSet<Game> Game { get; set; }
         public virtual DbSet<Player> Player { get; set; }
+        public virtual DbSet<DeadPlayer> DeadPlayers { get; set; }
+        public virtual DbSet<KillsByMeans> KillsByMeans { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            MappingPlayes(modelBuilder);
-
-            MappingDeadPlayer(modelBuilder);
-
             MappingGame(modelBuilder);
+            MappingPlayes(modelBuilder);
+            MappingDeadPlayer(modelBuilder);
+            MappingKillsByMeans(modelBuilder);
         }
 
         private void MappingGame(DbModelBuilder modelBuilder)
@@ -31,6 +31,14 @@
             modelBuilder.Entity<Game>().Property(e => e.TotalKills).HasPrecision(18, 2);
             modelBuilder.Entity<Game>().HasMany(e => e.Players).WithRequired(e => e.Game).HasForeignKey(e => e.IdGame).WillCascadeOnDelete(true);
             modelBuilder.Entity<Game>().HasMany(e => e.DeadPlayers).WithRequired(e => e.Game).HasForeignKey(e => e.IdGame).WillCascadeOnDelete(true);
+            modelBuilder.Entity<Game>().HasMany(e => e.KillsByMeans).WithRequired(e => e.Game).HasForeignKey(e => e.IdGame).WillCascadeOnDelete(true);
+        }
+
+        private void MappingPlayes(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Player>().ToTable("Player");
+            modelBuilder.Entity<Player>().HasKey(e => new { e.IdGame, e.Id });
+            modelBuilder.Entity<Player>().Property(e => e.Name).HasMaxLength(30).IsUnicode(false);
         }
 
         private void MappingDeadPlayer(DbModelBuilder modelBuilder)
@@ -41,11 +49,11 @@
             modelBuilder.Entity<DeadPlayer>().Property(e => e.TotalKills).HasPrecision(18, 2);
         }
 
-        private void MappingPlayes(DbModelBuilder modelBuilder)
+        private void MappingKillsByMeans(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Player>().ToTable("Player");
-            modelBuilder.Entity<Player>().HasKey(e => new { e.IdGame, e.Id });
-            modelBuilder.Entity<Player>().Property(e => e.Name).HasMaxLength(30).IsUnicode(false);
+            modelBuilder.Entity<KillsByMeans>().ToTable("KillsByMeans");
+            modelBuilder.Entity<KillsByMeans>().HasKey(e => new { e.IdGame, e.MeansOfDeath });
+            modelBuilder.Entity<KillsByMeans>().Property(e => e.TotalKills).HasPrecision(18, 2);
         }
     }
 }
