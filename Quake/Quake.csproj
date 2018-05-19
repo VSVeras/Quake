@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\Services\Game.cs" />
+    <Compile Include="Applications\MVVM\Games\DeadPlayer.cs" />
+    <Compile Include="Applications\MVVM\Games\Game.cs" />
+    <Compile Include="Applications\MVVM\Games\KillsByMeans.cs" />
+    <Compile Include="Applications\MVVM\Games\Player.cs" />
     <Compile Include="Entities\KillsByMeans.cs" />
     <Compile Include="Infrastructure\Contracts\IGamesLogFileReader.cs" />
     <Compile Include="Entities\Contracts\IGames.cs" />
