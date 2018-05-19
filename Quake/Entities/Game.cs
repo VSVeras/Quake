@@ -22,7 +22,6 @@ namespace Quake.Entities
             KillsByMeans = new List<KillsByMeans>();
         }
 
-
         public void Add(Player player)
         {
             var onePlayer = FindPlayer(player.Id);

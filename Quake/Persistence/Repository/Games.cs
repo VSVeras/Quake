@@ -1,6 +1,7 @@
 ﻿using Quake.Entities;
 using Quake.Entities.Contracts;
 using Quake.Persistence.Database;
+using System;
 using System.Collections.Generic;
 
 namespace Quake.Persistence.Repository
@@ -11,7 +12,7 @@ namespace Quake.Persistence.Repository
 
         public Games(QuakeContext context)
         {
-            Context = context;
+            Context = context ?? throw new ArgumentException("The connection to the database was not reported.");
         }
 
         public void Save(List<Game> games)
