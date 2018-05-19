@@ -2,13 +2,16 @@
 {
     public class DeadPlayer
     {
+        public int IdGame { get; protected set; }
         public int Id { get; protected set; }
-        public Player Player { get; private set; }
-        public decimal TotalKills { get; private set; }
+        public string Name { get; protected set; }
+        public decimal TotalKills { get; protected set; }
+        public virtual Game Game { get; protected set; }
 
-        public DeadPlayer(Player killed)
+        public DeadPlayer(int id, string name)
         {
-            Player = killed;
+            Id = id;
+            Name = name;
         }
 
         public void Subtract()

@@ -6,23 +6,25 @@ namespace Quake.Entities
 {
     public class Game
     {
-        private readonly List<Player> _player;
-        public IEnumerable<Player> Players => _player;
+        public int Id { get; protected set; }
         public decimal TotalKills { get; protected set; }
-        public readonly List<DeadPlayer> _deadPlayers;
-        public IEnumerable<DeadPlayer> DeadPlayers => _deadPlayers;
+
+        public virtual List<Player> Players { get; set; }
+
+        public virtual List<DeadPlayer> DeadPlayers { get; set; }
 
         public Game()
         {
-            _deadPlayers = new List<DeadPlayer>();
-            _player = new List<Player>();
+            DeadPlayers = new List<DeadPlayer>();
+            Players = new List<Player>();
         }
+
 
         public void Add(Player player)
         {
             var onePlayer = FindPlayer(player.Id);
             if (onePlayer == null)
-                _player.Add(player);
+                Players.Add(player);
         }
 
         public void ChangeNameOf(Player player, string name)
@@ -34,7 +36,7 @@ namespace Quake.Entities
 
         private Player FindPlayer(int id)
         {
-            return _player.FirstOrDefault(atWhere => atWhere.Id == id);
+            return Players.FirstOrDefault(atWhere => atWhere.Id == id);
         }
 
         public void KillForMurder(Player killer, Player victim, MeansOfDeath meansOfDeath)
@@ -57,9 +59,9 @@ namespace Quake.Entities
             if (player == null)
                 player = victim;
 
-            var newDeadPlayer = new DeadPlayer(player);
+            var newDeadPlayer = new DeadPlayer(player.Id, player.Name);
             newDeadPlayer.Sum();
-            _deadPlayers.Add(newDeadPlayer);
+            DeadPlayers.Add(newDeadPlayer);
         }
 
         public void KillByNaturalDeath(Player victim, MeansOfDeath mOD_TRIGGER_HURT)
@@ -75,7 +77,7 @@ namespace Quake.Entities
 
         private DeadPlayer FindPlayerDead(int id)
         {
-            return _deadPlayers.FirstOrDefault(atWhere => atWhere.Player.Id == id);
+            return DeadPlayers.FirstOrDefault(atWhere => atWhere.Id == id);
         }
 
         public decimal DeathsGroupedPerPlayer(Player player)
@@ -87,7 +89,7 @@ namespace Quake.Entities
         private decimal TotalSumOfDeathsGroupedPerPlayer(int id)
         {
             var totalDeaths = 0m;
-            var playerKilled = _deadPlayers.FirstOrDefault(atWhere => atWhere.Player.Id == id);
+            var playerKilled = DeadPlayers.FirstOrDefault(atWhere => atWhere.Id == id);
             if (playerKilled != null)
                 totalDeaths = playerKilled.TotalKills;
 
