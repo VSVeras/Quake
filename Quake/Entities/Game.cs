@@ -52,7 +52,7 @@ namespace Quake.Entities
             {
                 AddNewDeadPlayer(victim);
             }
-            TotalKills++;
+            TotalKills++; //total_kills são os kills dos games, isso inclui mortes do <world>.
             GenerateStatisticsBecauseOfDeath(meansOfDeath);
         }
 
@@ -82,15 +82,16 @@ namespace Quake.Entities
             DeadPlayers.Add(newDeadPlayer);
         }
 
+        //<world> não é um player e não deve aparecer na lista de players e nem no dicionário de kills.
         public void KillByNaturalDeath(Player victim, MeansOfDeath meansOfDeath)
         {
             var deadPlayerExist = FindPlayerDead(victim.Id);
             if (deadPlayerExist != null)
             {
                 if (deadPlayerExist.TotalKills > 0m)
-                    deadPlayerExist.Subtract();
+                    deadPlayerExist.Subtract(); //Quando o <world> mata o player ele perde -1 kill.
             }
-            TotalKills++;
+            TotalKills++; //total_kills são os kills dos games, isso inclui mortes do <world>.
             GenerateStatisticsBecauseOfDeath(meansOfDeath);
         }
 

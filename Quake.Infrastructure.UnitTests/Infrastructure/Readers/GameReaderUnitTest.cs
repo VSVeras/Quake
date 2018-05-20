@@ -37,9 +37,9 @@ namespace Quake.Infrastructure.UnitTests.Infrastructure.Readers
         [TestMethod]
         public void Deve_retornar_um_ou_mais_jogos()
         {
-            var totalGames = gamesReader.Count;
+            var totalGamesExpected = gamesReader.Count;
 
-            Assert.IsTrue(totalGames > 0);
+            Assert.IsTrue(totalGamesExpected > 0);
         }
 
         [TestMethod]

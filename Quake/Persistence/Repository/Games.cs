@@ -6,23 +6,23 @@ using System.Collections.Generic;
 
 namespace Quake.Persistence.Repository
 {
-    public class Games : IGames
+    public class Games : IGames, IDisposable
     {
-        private readonly QuakeContext Context;
+        private readonly QuakeContext context;
 
         public Games(QuakeContext context)
         {
-            Context = context ?? throw new ArgumentException("The connection to the database was not reported.");
+            this.context = context ?? throw new ArgumentException("The connection to the database was not reported.");
         }
 
         public void Save(List<Game> games)
         {
-            using (var transaction = Context.Database.BeginTransaction())
+            using (var transaction = context.Database.BeginTransaction())
             {
                 try
                 {
-                    Context.Game.AddRange(games);
-                    Context.SaveChanges();
+                    context.Game.AddRange(games);
+                    context.SaveChanges();
                     transaction.Commit();
                 }
                 catch
@@ -31,6 +31,18 @@ namespace Quake.Persistence.Repository
                     throw;
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+
+            context?.Dispose();
         }
     }
 }

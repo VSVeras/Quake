@@ -12,10 +12,10 @@
             Configuration.LazyLoadingEnabled = false;
         }
 
-        public virtual DbSet<Game> Game { get; set; }
-        public virtual DbSet<Player> Player { get; set; }
-        public virtual DbSet<DeadPlayer> DeadPlayers { get; set; }
-        public virtual DbSet<KillsByMeans> KillsByMeans { get; set; }
+        public DbSet<Game> Game { get; set; }
+        public DbSet<Player> Player { get; set; }
+        public DbSet<DeadPlayer> DeadPlayer { get; set; }
+        public DbSet<KillsByMeans> KillsByMeans { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
