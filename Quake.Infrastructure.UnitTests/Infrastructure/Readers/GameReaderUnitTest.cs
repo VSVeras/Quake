@@ -3,8 +3,8 @@ using Quake.Entities;
 using Quake.Entities.Contracts;
 using Quake.Infrastructure.Contracts;
 using Quake.Infrastructure.Infrastructure.Readers;
-using Quake.Persistence.Database;
 using Quake.Persistence.Repository;
+using Quake.Persistence.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +25,11 @@ namespace Quake.Infrastructure.UnitTests.Infrastructure.Readers
 
             gamesReader = logFileReader.Reader();
 
-            using (var contexto = new QuakeContext())
+            using (var uow = new UnitOfWork())
             {
-                contexto.Database.ExecuteSqlCommand("DELETE FROM Game;");
+                uow.Current().Database.ExecuteSqlCommand("DELETE FROM Game;");
 
-                gamesRepository = new Games(contexto);
+                gamesRepository = new Games(uow);
                 gamesRepository.Save(gamesReader);
             }
         }

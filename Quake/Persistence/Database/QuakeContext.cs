@@ -3,7 +3,7 @@
     using Quake.Entities;
     using System.Data.Entity;
 
-    public class QuakeContext : DbContext
+    internal sealed class QuakeContext : DbContext
     {
         public QuakeContext() : base("name=QuakeContext")
         {

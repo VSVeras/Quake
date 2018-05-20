@@ -1,28 +1,28 @@
 ﻿using Quake.Entities;
 using Quake.Entities.Contracts;
-using Quake.Persistence.Database;
-using System;
+using Quake.Persistence.Contracts;
 using System.Collections.Generic;
 
 namespace Quake.Persistence.Repository
 {
-    public class Games : IGames, IDisposable
+    public class Games : IGames
     {
-        private readonly QuakeContext context;
+        private readonly IUnitOfWork _uow;
 
-        public Games(QuakeContext context)
+        public Games(IUnitOfWork uow)
         {
-            this.context = context ?? throw new ArgumentException("The connection to the database was not reported.");
+            _uow = uow;
         }
+
 
         public void Save(List<Game> games)
         {
-            using (var transaction = context.Database.BeginTransaction())
+            using (var transaction = _uow.Current().Database.BeginTransaction())
             {
                 try
                 {
-                    context.Game.AddRange(games);
-                    context.SaveChanges();
+                    _uow.Current().Set<Game>().AddRange(games);
+                    _uow.Current().SaveChanges();
                     transaction.Commit();
                 }
                 catch
@@ -31,18 +31,6 @@ namespace Quake.Persistence.Repository
                     throw;
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (!disposing) return;
-
-            context?.Dispose();
         }
     }
 }

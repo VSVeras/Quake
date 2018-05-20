@@ -56,6 +56,8 @@
     <Compile Include="Entities\Contracts\IGames.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Persistence\Contracts\IUnitOfWork.cs" />
+    <Compile Include="Persistence\Transactions\UnitOfWork.cs" />
     <Compile Include="Persistence\Database\QuakeContext.cs" />
     <Compile Include="Persistence\Repository\Games.cs" />
     <Compile Include="Persistence\Repository\RankingOfGames.cs" />

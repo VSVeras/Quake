@@ -1,7 +1,7 @@
 ﻿using Quake.Applications.Services;
 using Quake.CQRS.Contracts;
-using Quake.Persistence.Database;
 using Quake.Persistence.Repository;
+using Quake.Persistence.Transactions;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -15,7 +15,7 @@ namespace Quake.WebAPI.Controllers
 
         public GamesController()
         {
-            rankingOfGames = new RankingOfGames(new QuakeContext());
+            rankingOfGames = new RankingOfGames(new UnitOfWork());
             gameQuake = new GameQuake(rankingOfGames);
         }
 

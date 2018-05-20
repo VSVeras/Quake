@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quake.CQRS;
 using Quake.Infrastructure.Infrastructure.Readers;
-using Quake.Persistence.Database;
 using Quake.Persistence.Repository;
+using Quake.Persistence.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +19,10 @@ namespace Quake.Infrastructure.UnitTests.CQRS
             var logFileReader = new GamesLogFileReader(logFilePath);
             var gamesReader = logFileReader.Reader();
 
-            using (var context = new QuakeContext())
+            using (var uow = new UnitOfWork())
             {
-                context.Database.ExecuteSqlCommand("DELETE FROM Game;");
-                var gamesRepository = new Games(context);
+                uow.Current().Database.ExecuteSqlCommand("DELETE FROM Game;");
+                var gamesRepository = new Games(uow);
                 gamesRepository.Save(gamesReader);
             }
         }
@@ -33,9 +33,9 @@ namespace Quake.Infrastructure.UnitTests.CQRS
             var playerNameExpected = "Isgalamido";
             List<KillsByPlayers> totalRanking;
 
-            using (var context = new QuakeContext())
+            using (var uow = new UnitOfWork())
             {
-                var rankingOfGames = new RankingOfGames(context);
+                var rankingOfGames = new RankingOfGames(uow);
                 totalRanking = rankingOfGames.FindPlayerBy(playerNameExpected);
             }
 
