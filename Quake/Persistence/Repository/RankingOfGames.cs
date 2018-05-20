@@ -31,7 +31,7 @@ namespace Quake.Persistence.Repository
                                   where (name == record.Name || record.Name.Contains(name))
                                   group record by record.Name into ranking
                                   select new KillsByPlayers { Name = ranking.Key, TotalKills = ranking.Sum(x => x.TotalKills) }
-                                  ).ToList();
+                                  ).OrderByDescending(order => order.TotalKills).ToList();
 
                     return records;
                 }

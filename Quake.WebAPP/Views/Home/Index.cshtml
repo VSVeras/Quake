@@ -1,0 +1,29 @@
+﻿<div class="jumbotron">
+
+    <h2 style="text-align: left;">RANKING</h2>
+
+    <form name="commandForm">
+
+        <input type="text" class="form-control" name="name" ng_model="name" placeholder="Busca por nome" />
+        <button class="buttonsendCommand form-control" ng-click="sendCommand(name)">   Buscar   </button>
+
+    </form>
+
+    <table ng-show="RankingOfGamesOfPlayers.length > 0" class="table">
+        <tr>
+            <th width="220">NAME</th>
+            <th width="80"><img class="imageArea" src="~/Images/poison.png" />KILLS</th>
+        </tr>
+        <tr ng-repeat="ranking in RankingOfGamesOfPlayers">
+            <td>{{ranking.name}}</td>
+            <td>{{ranking.totalKills}}</td>
+        </tr>
+    </table>
+
+    <div class="ui-alerta" ng-show="msgErro.length > 0">
+        <div class="ui-alert-message">
+            {{msgErro}}
+        </div>
+    </div>
+
+</div>
