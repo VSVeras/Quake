@@ -14,6 +14,9 @@ app.controller("rankingOfGamesCtrl", function ($scope, $http) {
             name = "";
         }
 
+        $scope.msgSucess = "";
+        $scope.msgErro = "";
+        
         $http.post("http://localhost:52661/api/FindRankingOfGamesOfPlayersBy", { name }).then(
 
             function (success) {
@@ -23,8 +26,6 @@ app.controller("rankingOfGamesCtrl", function ($scope, $http) {
                 }
 
             }, function (error) {
-
-                $scope.msgSucess = "";
 
                 if (error.data.errors)
                     $scope.msgErro = error.data.errors;
