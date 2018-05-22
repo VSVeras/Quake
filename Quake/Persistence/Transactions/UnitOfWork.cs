@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace Quake.Persistence.Transactions
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public sealed class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly DbContext _uow;
 

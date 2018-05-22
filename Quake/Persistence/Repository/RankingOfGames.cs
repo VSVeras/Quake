@@ -23,9 +23,6 @@ namespace Quake.Persistence.Repository
             {
                 try
                 {
-                    _uow.Current().Configuration.ProxyCreationEnabled = false;
-                    _uow.Current().Configuration.LazyLoadingEnabled = false;
-
                     var records = (
                                   from record in _uow.Current().Set<DeadPlayer>()
                                   where (name == record.Name || record.Name.Contains(name))
