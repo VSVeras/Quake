@@ -85,10 +85,10 @@ namespace Quake.UnitTests.Entities
             var namePlayerExpected = "Isgalamido";
             var killer = PlayerFactory.Default().WithIdAndName(1, "Dono da Bola").Build();
             var victim = PlayerFactory.Default().WithIdAndName(2, "Dono da Bola").Build();
-            game.Add(killer);
-            game.Add(victim);
 
             //act
+            game.Add(killer);
+            game.Add(victim);
             game.ChangeNameOf(victim, namePlayerExpected);
 
             //assert
@@ -97,7 +97,7 @@ namespace Quake.UnitTests.Entities
         }
 
         [TestMethod]
-        public void Deve_matar_um_jogador_de_morte_natual_e_atualizar_o_total_das_mortes()
+        public void Deve_matar_um_jogador_por_morte_natual_e_atualizar_o_total_das_mortes()
         {
             //arrange
             var totalOfDeadPlayersExpected = 1m;
@@ -129,7 +129,7 @@ namespace Quake.UnitTests.Entities
         }
 
         [TestMethod]
-        public void Deve_matar_um_jogador_de_morte_natual_e_subtrair_uma_morte_do_total_agrupados_das_mortes()
+        public void Deve_matar_um_jogador_por_morte_natual_e_subtrair_uma_morte_do_total_agrupados_das_mortes()
         {
             //arrange
             var totalOfDeadPlayersExpected = 2m;
@@ -168,7 +168,7 @@ namespace Quake.UnitTests.Entities
         }
 
         [TestMethod]
-        public void Deve_matar_um_jogador_de_morte_natual_por_duas_vezes_e_subtrair_duas_morte_do_total_agrupados_das_mortes()
+        public void Deve_matar_um_jogador_por_morte_natual_por_duas_vezes_e_subtrair_duas_morte_do_total_agrupados_das_mortes()
         {
             //arrange
             var totalOfDeadPlayersExpected = 2m;

@@ -30,15 +30,18 @@ namespace Quake.Infrastructure.UnitTests.CQRS
         [TestMethod]
         public void Deve_retornar_o_ranking_de_um_jogador()
         {
+            //arrange
             var playerNameExpected = "Isgalamido";
             List<KillsByPlayers> totalRanking;
 
+            //act
             using (var uow = new UnitOfWork())
             {
                 var rankingOfGames = new RankingOfGames(uow);
                 totalRanking = rankingOfGames.FindPlayerBy(playerNameExpected);
             }
 
+            //assert
             Assert.IsTrue(totalRanking.Count > 0);
             Assert.AreEqual(playerNameExpected, totalRanking.FirstOrDefault().Name);
         }
