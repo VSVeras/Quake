@@ -1,6 +1,8 @@
-﻿namespace Quake.Entities
+﻿using Quake.Entities.Contracts;
+
+namespace Quake.Entities
 {
-    public class DeadPlayer
+    public class DeadPlayer : IDeadPlayer
     {
         public int IdGame { get; protected set; }
         public int Id { get; protected set; }

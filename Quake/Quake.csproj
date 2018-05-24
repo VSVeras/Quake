@@ -51,6 +51,7 @@
     <Compile Include="CQRS\Contracts\IRankingOfGames.cs" />
     <Compile Include="CQRS\KillsByPlayers.cs" />
     <Compile Include="CQRS\KillsByMeans.cs" />
+    <Compile Include="Entities\Contracts\IDeadPlayer.cs" />
     <Compile Include="Entities\KillsByMeans.cs" />
     <Compile Include="Infrastructure\Contracts\IGamesLogFileReader.cs" />
     <Compile Include="Entities\Contracts\IGames.cs" />

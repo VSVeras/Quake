@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Quake.Entities;
+using Quake.UnitTests.Factories;
 
 namespace Quake.UnitTests.Entities
 {
@@ -9,7 +9,7 @@ namespace Quake.UnitTests.Entities
         [TestMethod]
         public void Deve_criar_um_jogador_somente_com_o_identificador()
         {
-            var playerOne = new Player(1);
+            var playerOne = PlayerFactory.Default().WithID(1).Build();
             var IdPlayerExpected = 1;
 
             Assert.AreEqual(IdPlayerExpected, playerOne.Id);
@@ -20,7 +20,7 @@ namespace Quake.UnitTests.Entities
         {
             var IdPlayerExpected = 1;
             var namePlayerExpected = "Isgalamido";
-            var playerOne = new Player(1, "Isgalamido");
+            var playerOne = PlayerFactory.Default().WithIdAndName(IdPlayerExpected, namePlayerExpected).Build();
 
             Assert.AreEqual(IdPlayerExpected, playerOne.Id);
             Assert.AreEqual(namePlayerExpected, playerOne.Name);
@@ -31,7 +31,7 @@ namespace Quake.UnitTests.Entities
         {
             var IdPlayerExpected = 1;
             var namePlayerExpected = "Isgalamido";
-            var playerOne = new Player(1, "Teste");
+            var playerOne = PlayerFactory.Default().Build();
 
             playerOne.Changed("Isgalamido");
 
