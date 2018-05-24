@@ -25,14 +25,10 @@ namespace Quake.Infrastructure.Infrastructure.Readers
         {
             try
             {
-                var games = new List<Game>();
-                Game currentGame = null;
-
-                using (StreamReader reader = new StreamReader(LogFilePath, Encoding.UTF8))
+                List<Game> games;
+                using (StreamReader readerLog = new StreamReader(LogFilePath, Encoding.UTF8))
                 {
-                    currentGame = ProcessesRows(games, currentGame, reader);
-                    reader.Close();
-                    reader.Dispose();
+                    games = ProcessTheRows(readerLog);
                 }
                 return games;
             }
@@ -42,8 +38,11 @@ namespace Quake.Infrastructure.Infrastructure.Readers
             }
         }
 
-        private Game ProcessesRows(List<Game> games, Game currentGame, StreamReader reader)
+        private List<Game> ProcessTheRows(StreamReader reader)
         {
+            var games = new List<Game>();
+            Game currentGame = null;
+
             while (reader.Peek() >= 0)
             {
                 var row = reader.ReadLine();
@@ -69,7 +68,7 @@ namespace Quake.Infrastructure.Infrastructure.Readers
                 }
             }
 
-            return currentGame;
+            return games;
         }
 
         private Game MappingGame(List<Game> games)
