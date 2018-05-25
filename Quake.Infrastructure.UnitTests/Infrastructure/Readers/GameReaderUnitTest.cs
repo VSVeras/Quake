@@ -46,18 +46,18 @@ namespace Quake.Infrastructure.UnitTests.Infrastructure.Readers
         public void Deve_retornar_um_jogo_com_um_jogador()
         {
             var playersExpected = new List<Player> { new Player(2, "Isgalamido"), new Player(3, "Dono da Bola") };
-            var valueExpected = gamesReader.All(atWhere => atWhere.Players.Any(criterion => playersExpected.Any(atWhereCriterion => atWhereCriterion.Id == criterion.Id)));
+            var foundPlayer = gamesReader.All(atWhere => atWhere.Players.Any(criterion => playersExpected.Any(atWhereCriterion => atWhereCriterion.Id == criterion.Id)));
 
-            Assert.IsTrue(valueExpected);
+            Assert.IsTrue(foundPlayer);
         }
 
         [TestMethod]
         public void Deve_retornar_um_jogo_com_o_nome_de_um_jogador_alterado()
         {
             var playerExpected = new Player(2, "Isgalamido");
-            var valueExpected = gamesReader.Any(atWhere => atWhere.Players.Any(criterion => criterion.Id == playerExpected.Id && criterion.Name == playerExpected.Name));
+            var foundPlayer = gamesReader.Any(atWhere => atWhere.Players.Any(criterion => criterion.Id == playerExpected.Id && criterion.Name == playerExpected.Name));
 
-            Assert.IsTrue(valueExpected);
+            Assert.IsTrue(foundPlayer);
         }
     }
 }

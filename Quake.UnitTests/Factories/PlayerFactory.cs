@@ -17,13 +17,13 @@ namespace Quake.UnitTests.Factories
             return new PlayerFactory();
         }
 
-        internal PlayerFactory WithID(int id)
+        public PlayerFactory WithID(int id)
         {
             playerOne = new Player(id);
             return this;
         }
 
-        internal PlayerFactory WithIdAndName(int id, string name)
+        public PlayerFactory WithIdAndName(int id, string name)
         {
             playerOne = new Player(id, name);
             return this;
