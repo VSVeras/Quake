@@ -17,14 +17,13 @@ namespace Quake.WebAPI.Controllers
 
         public Task<HttpResponseMessage> CreateResponse(HttpStatusCode code, object result)
         {
-            var retorno = result;
             try
             {
-                responseMessage = Request.CreateResponse(code, retorno);
+                responseMessage = Request.CreateResponse(code, result);
             }
             catch (Exception error)
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, new { errors = error.InnerException });
+                responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, error.InnerException);
             }
             return Task.FromResult<HttpResponseMessage>(responseMessage);
         }

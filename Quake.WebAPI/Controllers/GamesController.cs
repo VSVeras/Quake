@@ -2,6 +2,8 @@
 using Quake.CQRS.Contracts;
 using Quake.Persistence.Repository;
 using Quake.Persistence.Transactions;
+using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -25,9 +27,17 @@ namespace Quake.WebAPI.Controllers
         {
             var name = (string)body.name;
 
-            var retorno = gameQuake.FindRankingOfGamesOfPlayersBy(name);
+            try
+            {
+                var retorno = gameQuake.FindRankingOfGamesOfPlayersBy(name);
+                return CreateResponse(HttpStatusCode.OK, retorno);
 
-            return CreateResponse(System.Net.HttpStatusCode.Created, retorno);
+            }
+            catch (Exception error)
+            {
+                return CreateResponse(HttpStatusCode.BadRequest, error.InnerException);
+            }
+
         }
     }
 }

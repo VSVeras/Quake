@@ -26,8 +26,8 @@ app.controller("rankingOfGamesCtrl", function ($scope, $http) {
 
             }, function (error) {
 
-                if (error.data.errors)
-                    $scope.msgErro = error.data.errors;
+                if (error.data.Message)
+                    $scope.msgErro = error.data.Message;
 
             }
         );

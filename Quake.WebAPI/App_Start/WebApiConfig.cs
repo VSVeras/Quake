@@ -17,7 +17,7 @@ namespace Quake.WebAPI
             jsonSettings.Formatting = Formatting.Indented;
             jsonSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
 
             var policies = new EnableCorsAttribute(origins: "*", methods: "*", headers: "*");
             config.EnableCors(policies);
