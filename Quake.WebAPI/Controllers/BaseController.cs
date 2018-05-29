@@ -8,15 +8,9 @@ namespace Quake.WebAPI.Controllers
 {
     public class BaseController : ApiController
     {
-        public HttpResponseMessage responseMessage = null;
-
-        public BaseController()
-        {
-            responseMessage = new HttpResponseMessage();
-        }
-
         public Task<HttpResponseMessage> CreateResponse(HttpStatusCode code, object result)
         {
+            HttpResponseMessage responseMessage;
             try
             {
                 responseMessage = Request.CreateResponse(code, result);

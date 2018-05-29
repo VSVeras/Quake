@@ -25,11 +25,11 @@ namespace Quake.WebAPI.Controllers
         [Route("api/FindRankingOfGamesOfPlayersBy")]
         public Task<HttpResponseMessage> Post([FromBody]dynamic body)
         {
-            var name = (string)body.name;
-
             try
             {
+                var name = (string)body.name;
                 var retorno = gameQuake.FindRankingOfGamesOfPlayersBy(name);
+
                 return CreateResponse(HttpStatusCode.OK, retorno);
 
             }
