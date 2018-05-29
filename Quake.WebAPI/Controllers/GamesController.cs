@@ -37,7 +37,6 @@ namespace Quake.WebAPI.Controllers
             {
                 return CreateResponse(HttpStatusCode.BadRequest, error.InnerException);
             }
-
         }
     }
 }
