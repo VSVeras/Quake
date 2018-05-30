@@ -9,12 +9,12 @@
 
     </form>
 
-    <table ng-show="RankingOfGamesOfPlayers.length > 0" class="table">
+    <table ng-show="rankingOfGamesOfPlayers.length > 0" class="table">
         <tr>
             <th width="220">NAME</th>
             <th width="80"><img class="imageArea" src="~/Images/poison.png" />KILLS</th>
         </tr>
-        <tr ng-repeat="ranking in RankingOfGamesOfPlayers">
+        <tr ng-repeat="ranking in rankingOfGamesOfPlayers">
             <td>{{ranking.name}}</td>
             <td>{{ranking.totalKills}}</td>
         </tr>

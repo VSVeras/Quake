@@ -6,7 +6,7 @@ app.controller("rankingOfGamesCtrl", function ($scope, $http) {
 
     $scope.name = "";
     $scope.msgErro = "";
-    $scope.RankingOfGamesOfPlayers = [];
+    $scope.rankingOfGamesOfPlayers = [];
 
     $scope.sendCommand = function (name) {
 
@@ -17,11 +17,10 @@ app.controller("rankingOfGamesCtrl", function ($scope, $http) {
         $scope.msgErro = "";
         
         $http.post("http://localhost:52661/api/FindRankingOfGamesOfPlayersBy", { name }).then(
-
             function (success) {
 
                 if (success) {
-                    $scope.RankingOfGamesOfPlayers = success.data;
+                    $scope.rankingOfGamesOfPlayers = success.data;
                 }
 
             }, function (error) {
