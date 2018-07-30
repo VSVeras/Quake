@@ -1,9 +1,9 @@
-namespace Quake.Persistence.Migrations
+namespace Quake.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateDB : DbMigration
+    public partial class CriacaoDoBancoDeDados : DbMigration
     {
         public override void Up()
         {

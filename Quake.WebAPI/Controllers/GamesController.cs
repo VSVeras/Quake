@@ -31,7 +31,6 @@ namespace Quake.WebAPI.Controllers
                 var retorno = gameQuake.FindRankingOfGamesOfPlayersBy(name);
 
                 return CreateResponse(HttpStatusCode.OK, retorno);
-
             }
             catch (Exception error)
             {

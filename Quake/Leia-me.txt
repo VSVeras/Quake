@@ -1,0 +1,9 @@
+﻿Install-Package EntityFramework 6.2.0
+
+OBS.: Set as startup project
+
+Enable-Migrations
+Enable-Migrations -EnableAutomaticMigrations
+
+Add-Migration CriacaoDoBancoDeDados -ConfigurationTypeName Quake.Migrations.Configuration
+Update-Database –Verbose -ConfigurationTypeName Quake.Migrations.Configuration

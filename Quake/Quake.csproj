@@ -57,10 +57,11 @@
     <Compile Include="Entities\Contracts\IGames.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Player.cs" />
-    <Compile Include="Migrations\201805240034564_CreateDB.cs" />
-    <Compile Include="Migrations\201805240034564_CreateDB.Designer.cs">
-      <DependentUpon>201805240034564_CreateDB.cs</DependentUpon>
+    <Compile Include="Migrations\201807302049331_CriacaoDoBancoDeDados.cs" />
+    <Compile Include="Migrations\201807302049331_CriacaoDoBancoDeDados.Designer.cs">
+      <DependentUpon>201807302049331_CriacaoDoBancoDeDados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\Contracts\IUnitOfWork.cs" />
     <Compile Include="Persistence\Transactions\UnitOfWork.cs" />
@@ -76,8 +77,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805240034564_CreateDB.resx">
-      <DependentUpon>201805240034564_CreateDB.cs</DependentUpon>
+    <Content Include="Leia-me.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807302049331_CriacaoDoBancoDeDados.resx">
+      <DependentUpon>201807302049331_CriacaoDoBancoDeDados.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
