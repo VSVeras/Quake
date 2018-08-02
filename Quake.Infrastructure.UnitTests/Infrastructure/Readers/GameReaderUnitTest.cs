@@ -3,6 +3,7 @@ using Quake.Entities;
 using Quake.Entities.Contracts;
 using Quake.Infrastructure.Contracts;
 using Quake.Infrastructure.Infrastructure.Readers;
+using Quake.Persistence.Database;
 using Quake.Persistence.Repository;
 using Quake.Persistence.Transactions;
 using System;
@@ -25,7 +26,7 @@ namespace Quake.Infrastructure.UnitTests.Infrastructure.Readers
 
             gamesReader = logFileReader.Reader();
 
-            using (var uow = new UnitOfWork())
+            using (var uow = new UnitOfWork(new QuakeContext()))
             {
                 uow.Current().Database.ExecuteSqlCommand("DELETE FROM Game;");
 

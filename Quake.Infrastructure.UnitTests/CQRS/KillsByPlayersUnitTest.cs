@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quake.CQRS;
 using Quake.Infrastructure.Infrastructure.Readers;
+using Quake.Persistence.Database;
 using Quake.Persistence.Repository;
 using Quake.Persistence.Transactions;
 using System;
@@ -19,7 +20,7 @@ namespace Quake.Infrastructure.UnitTests.CQRS
             var logFileReader = new GamesLogFileReader(logFilePath);
             var gamesReader = logFileReader.Reader();
 
-            using (var uow = new UnitOfWork())
+            using (var uow = new UnitOfWork(new QuakeContext()))
             {
                 uow.Current().Database.ExecuteSqlCommand("DELETE FROM Game;");
                 var gamesRepository = new Games(uow);
@@ -35,7 +36,7 @@ namespace Quake.Infrastructure.UnitTests.CQRS
             List<KillsByPlayers> totalRanking;
 
             //act
-            using (var uow = new UnitOfWork())
+            using (var uow = new UnitOfWork(new QuakeContext()))
             {
                 var rankingOfGames = new RankingOfGames(uow);
                 totalRanking = rankingOfGames.FindPlayerBy(playerNameExpected);

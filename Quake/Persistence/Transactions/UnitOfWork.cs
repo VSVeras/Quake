@@ -9,9 +9,9 @@ namespace Quake.Persistence.Transactions
     {
         private readonly DbContext _uow;
 
-        public UnitOfWork()
+        public UnitOfWork(DbContext uow)
         {
-            _uow = new QuakeContext();
+            _uow = uow;
         }
 
         public DbContext Current()

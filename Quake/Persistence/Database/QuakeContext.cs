@@ -4,7 +4,7 @@
     using System;
     using System.Data.Entity;
 
-    internal sealed class QuakeContext : DbContext, IDisposable
+    public sealed class QuakeContext : DbContext, IDisposable
     {
         public QuakeContext() : base("name=QuakeContext")
         {
