@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Quake.CQRS.Contracts
+namespace Quake.CQS.Contracts
 {
     public interface IRankingOfGames
     {

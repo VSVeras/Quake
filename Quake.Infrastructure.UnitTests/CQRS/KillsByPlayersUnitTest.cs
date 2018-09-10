@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Quake.CQRS;
+using Quake.CQS;
 using Quake.Infrastructure.Infrastructure.Readers;
 using Quake.Persistence.Database;
 using Quake.Persistence.Repository;

@@ -1,4 +1,4 @@
-﻿namespace Quake.CQRS
+﻿namespace Quake.CQS
 {
     public class KillsByMeans
     {

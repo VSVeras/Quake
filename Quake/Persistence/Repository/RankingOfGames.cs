@@ -1,5 +1,5 @@
-﻿using Quake.CQRS;
-using Quake.CQRS.Contracts;
+﻿using Quake.CQS;
+using Quake.CQS.Contracts;
 using Quake.Entities;
 using Quake.Persistence.Contracts;
 using System.Collections.Generic;

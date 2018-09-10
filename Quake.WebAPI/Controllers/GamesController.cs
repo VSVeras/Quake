@@ -1,5 +1,5 @@
 ﻿using Quake.Applications.Services;
-using Quake.CQRS.Contracts;
+using Quake.CQS.Contracts;
 using Quake.Persistence.Database;
 using Quake.Persistence.Repository;
 using Quake.Persistence.Transactions;
