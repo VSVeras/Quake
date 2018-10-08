@@ -85,10 +85,10 @@ namespace Quake.UnitTests.Entities
             var namePlayerExpected = "Isgalamido";
             var killer = PlayerFactory.Default().WithIdAndName(1, "Dono da Bola").Build();
             var victim = PlayerFactory.Default().WithIdAndName(2, "Dono da Bola").Build();
-
-            //act
             game.Add(killer);
             game.Add(victim);
+
+            //act
             game.ChangeNameOf(victim, namePlayerExpected);
 
             //assert
@@ -105,7 +105,7 @@ namespace Quake.UnitTests.Entities
             game.Add(killer);
 
             //act
-            game.KillByNaturalDeath(killer, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillByNaturalDeath(killer, MeansOfDeath.MOD_TRIGGER_HURT); // Matar por morte natural
 
             //assert
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
@@ -122,7 +122,7 @@ namespace Quake.UnitTests.Entities
             game.Add(victim);
 
             //act
-            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT); // Matar por assassinato
 
             //assert
             Assert.AreEqual(totalOfDeadPlayersExpected, game.TotalKills);
