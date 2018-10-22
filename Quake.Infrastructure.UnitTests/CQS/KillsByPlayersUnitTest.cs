@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Quake.Infrastructure.UnitTests.CQRS
+namespace Quake.Infrastructure.UnitTests.CQS
 {
     [TestClass]
     public class KillsByPlayersUnitTest
