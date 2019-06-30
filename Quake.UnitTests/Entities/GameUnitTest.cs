@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quake.Entities;
+using Quake.Entities.Contracts;
+using Quake.Services;
 using Quake.UnitTests.Factories;
 using Quake.ValueObjects;
 using System.Linq;
@@ -10,11 +12,13 @@ namespace Quake.UnitTests.Entities
     public class GameUnitTest
     {
         private Game game;
+        private IGeneratorStatistics generatorStatistics;
 
         [TestInitialize]
         public void Iniciar()
         {
-            game = new Game();
+            generatorStatistics = new GeneratorStatisticsBecauseOfDeath();
+            game = new Game(generatorStatistics);
         }
 
         [TestMethod]
@@ -24,7 +28,7 @@ namespace Quake.UnitTests.Entities
             var totalPlayersExpected = 0;
 
             //act
-            var totalPlayers = game.Players.Count();
+            var totalPlayers = game.Players.AsEnumerable().Count();
 
             //assert
             Assert.AreEqual(totalPlayersExpected, totalPlayers);
@@ -41,7 +45,7 @@ namespace Quake.UnitTests.Entities
             game.Add(killer);
 
             //assert
-            Assert.AreEqual(totalPlayersExpected, game.Players.Count());
+            Assert.AreEqual(totalPlayersExpected, game.Players.AsEnumerable().Count());
         }
 
         [TestMethod]
@@ -74,7 +78,7 @@ namespace Quake.UnitTests.Entities
             game.Add(victim);
 
             //assert
-            Assert.AreEqual(totalPlayersExpected, game.Players.Count());
+            Assert.AreEqual(totalPlayersExpected, game.Players.AsEnumerable().Count());
         }
 
         [TestMethod]
@@ -92,7 +96,7 @@ namespace Quake.UnitTests.Entities
             game.ChangeNameOf(victim, namePlayerExpected);
 
             //assert
-            Assert.AreEqual(totalPlayersExpected, game.Players.Count());
+            Assert.AreEqual(totalPlayersExpected, game.Players.AsEnumerable().Count());
             Assert.AreEqual(namePlayerExpected, victim.Name);
         }
 

@@ -18,7 +18,8 @@ namespace Quake.Entities
 
         public void Subtract()
         {
-            TotalKills--;
+            if (TotalKills > decimal.MinValue)
+                TotalKills--;
         }
 
         public void Sum()

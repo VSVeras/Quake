@@ -1,6 +1,7 @@
 ﻿Install-Package EntityFramework 6.2.0
 
-OBS.: Set as startup project
+OBS.: Set as startup project somente este prjeto, criar o banco de dados e executar
+a ultima linha deste para a criação das tabelas
 
 Enable-Migrations
 Enable-Migrations -EnableAutomaticMigrations

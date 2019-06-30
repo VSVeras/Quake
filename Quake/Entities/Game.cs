@@ -1,4 +1,5 @@
-﻿using Quake.ValueObjects;
+﻿using Quake.Entities.Contracts;
+using Quake.ValueObjects;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,11 +16,18 @@ namespace Quake.Entities
 
         public virtual List<KillsByMeans> KillsByMeans { get; set; }
 
-        public Game()
+        private IGeneratorStatistics GeneratorStatistics { get; }
+    
+        protected Game()
         {
             Players = new List<Player>();
             DeadPlayers = new List<DeadPlayer>();
             KillsByMeans = new List<KillsByMeans>();
+        }
+
+        public Game(IGeneratorStatistics generatorStatistics) : this()
+        {
+            GeneratorStatistics = generatorStatistics;
         }
 
         public void Add(Player player)
@@ -53,22 +61,13 @@ namespace Quake.Entities
                 AddNewDeadPlayer(victim);
             }
             TotalKills++; //total_kills são os kills dos games, isso inclui mortes do <world>.
-            GenerateStatisticsBecauseOfDeath(meansOfDeath);
+            GeneratorStatistics.BecauseOfDeath(meansOfDeath, this);
         }
 
-        private void GenerateStatisticsBecauseOfDeath(MeansOfDeath meansOfDeath)
+        public void AddNewKill(KillsByMeans newKillsByMeans)
         {
-            var killsByMeans = KillsByMeans.FirstOrDefault(atWhere => atWhere.MeansOfDeath == meansOfDeath);
-            if (killsByMeans != null)
-            {
-                killsByMeans.Sum();
-            }
-            else
-            {
-                var newKillsByMeans = new KillsByMeans(meansOfDeath);
-                newKillsByMeans.Sum();
-                KillsByMeans.Add(newKillsByMeans);
-            }
+            newKillsByMeans.Sum();
+            KillsByMeans.Add(newKillsByMeans);
         }
 
         private void AddNewDeadPlayer(Player victim)
@@ -88,11 +87,10 @@ namespace Quake.Entities
             var deadPlayerExist = FindPlayerDead(victim.Id);
             if (deadPlayerExist != null)
             {
-                if (deadPlayerExist.TotalKills > 0m)
-                    deadPlayerExist.Subtract(); //Quando o <world> mata o player ele perde -1 kill.
+                deadPlayerExist.Subtract(); //Quando o <world> mata o player ele perde -1 kill.
             }
             TotalKills++; //total_kills são os kills dos games, isso inclui mortes do <world>.
-            GenerateStatisticsBecauseOfDeath(meansOfDeath);
+            GeneratorStatistics.BecauseOfDeath(meansOfDeath, this);
         }
 
         private DeadPlayer FindPlayerDead(int id)

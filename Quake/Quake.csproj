@@ -69,6 +69,8 @@
     <Compile Include="Persistence\Repository\Games.cs" />
     <Compile Include="Persistence\Repository\RankingOfGames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\Contracts\IGeneratorStatistics.cs" />
+    <Compile Include="Services\GeneratorStatisticsBecauseOfDeath.cs" />
     <Compile Include="ValueObjects\MeansOfDeath.cs" />
     <Compile Include="Entities\DeadPlayer.cs" />
   </ItemGroup>
@@ -84,5 +86,6 @@
       <DependentUpon>201807302049331_CriacaoDoBancoDeDados.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,7 @@
 ﻿using Quake.Entities;
+using Quake.Entities.Contracts;
 using Quake.Infrastructure.Contracts;
+using Quake.Services;
 using Quake.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -23,19 +25,12 @@ namespace Quake.Infrastructure.Infrastructure.Readers
 
         public List<Game> Reader()
         {
-            try
+            List<Game> games;
+            using (StreamReader readerLog = new StreamReader(LogFilePath, Encoding.UTF8))
             {
-                List<Game> games;
-                using (StreamReader readerLog = new StreamReader(LogFilePath, Encoding.UTF8))
-                {
-                    games = ProcessTheRows(readerLog);
-                }
-                return games;
+                games = ProcessTheRows(readerLog);
             }
-            catch
-            {
-                throw;
-            }
+            return games;
         }
 
         private List<Game> ProcessTheRows(StreamReader reader)
@@ -73,7 +68,7 @@ namespace Quake.Infrastructure.Infrastructure.Readers
 
         private Game MappingGame(List<Game> games)
         {
-            Game newGame = new Game();
+            Game newGame = new Game(new GeneratorStatisticsBecauseOfDeath());
             games.Add(newGame);
 
             return newGame;

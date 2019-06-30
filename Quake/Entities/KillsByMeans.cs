@@ -1,4 +1,5 @@
-﻿using Quake.ValueObjects;
+﻿using System;
+using Quake.ValueObjects;
 
 namespace Quake.Entities
 {
@@ -12,6 +13,11 @@ namespace Quake.Entities
         public KillsByMeans(MeansOfDeath meansOfDeath)
         {
             MeansOfDeath = meansOfDeath;
+        }
+
+        internal static object FirstOrDefault(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
         }
 
         public void Sum()

@@ -15,14 +15,7 @@ namespace Quake.Applications.Services
 
         public List<KillsByPlayers> FindRankingOfGamesOfPlayersBy(string name)
         {
-            try
-            {
-                return rankingOfGames.FindPlayerBy(name);
-            }
-            catch
-            {
-                throw;
-            }
+            return rankingOfGames.FindPlayerBy(name);
         }
     }
 }
