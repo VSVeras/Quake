@@ -64,10 +64,9 @@ namespace Quake.Entities
             GeneratorStatistics.BecauseOfDeath(meansOfDeath, this);
         }
 
-        public void AddNewKill(KillsByMeans newKillsByMeans)
+        public void AddDeathStatistics(KillsByMeans killsByMeans)
         {
-            newKillsByMeans.Sum();
-            KillsByMeans.Add(newKillsByMeans);
+            KillsByMeans.Add(killsByMeans);
         }
 
         private void AddNewDeadPlayer(Player victim)

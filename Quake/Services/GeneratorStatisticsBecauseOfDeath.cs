@@ -16,8 +16,9 @@ namespace Quake.Services
             }
             else
             {
-                var newKillsByMeans = new KillsByMeans(meansOfDeath);
-                game.AddNewKill(newKillsByMeans);
+                killsByMeans = new KillsByMeans(meansOfDeath);
+                killsByMeans.Sum();
+                game.AddDeathStatistics(killsByMeans);
             }
         }
     }

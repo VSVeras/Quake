@@ -15,11 +15,6 @@ namespace Quake.Entities
             MeansOfDeath = meansOfDeath;
         }
 
-        internal static object FirstOrDefault(Func<object, bool> p)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Sum()
         {
             TotalKills++;
