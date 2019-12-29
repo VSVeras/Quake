@@ -1,10 +1,9 @@
 ﻿namespace Quake.Persistence.Database
 {
     using Quake.Entities;
-    using System;
     using System.Data.Entity;
 
-    public sealed class QuakeContext : DbContext, IDisposable
+    public sealed class QuakeContext : DbContext
     {
         public QuakeContext() : base("name=QuakeContext")
         {
