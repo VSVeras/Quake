@@ -51,7 +51,7 @@ namespace Quake.Entities
 
         public void KillForMurder(Player killer, Player victim, MeansOfDeath meansOfDeath)
         {
-            var killerPlayerExist = Players.FirstOrDefault(atWhere => atWhere.Id == killer.Id);
+            var killerPlayerExist = FindPlayers(killer.Id);
             if (killerPlayerExist != null)
             {
                 var deadPlayerExist = FindPlayerDead(victim.Id);
@@ -66,6 +66,11 @@ namespace Quake.Entities
                 TotalKills++; //total_kills são os kills dos games, isso inclui mortes do <world>.
                 GeneratorStatistics.BecauseOfDeath(meansOfDeath, this);
             }
+        }
+
+        private Player FindPlayers(int id)
+        {
+            return Players.FirstOrDefault(atWhere => atWhere.Id == id);
         }
 
         public void AddDeathStatistics(KillsByMeans killsByMeans)
