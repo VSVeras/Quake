@@ -17,7 +17,7 @@ namespace Quake.Entities
         public virtual List<KillsByMeans> KillsByMeans { get; set; }
 
         private IGeneratorStatistics GeneratorStatistics { get; }
-    
+
         protected Game()
         {
             Players = new List<Player>();
@@ -41,7 +41,7 @@ namespace Quake.Entities
         {
             var onePlayer = FindPlayer(player.Id);
             if (onePlayer != null)
-                onePlayer.Changed(name);
+                onePlayer.ChangedName(name);
         }
 
         private Player FindPlayer(int id)
@@ -51,17 +51,21 @@ namespace Quake.Entities
 
         public void KillForMurder(Player killer, Player victim, MeansOfDeath meansOfDeath)
         {
-            var deadPlayerExist = FindPlayerDead(victim.Id);
-            if (deadPlayerExist != null)
+            var killerPlayerExist = Players.FirstOrDefault(atWhere => atWhere.Id == killer.Id);
+            if (killerPlayerExist != null)
             {
-                deadPlayerExist.Sum();
+                var deadPlayerExist = FindPlayerDead(victim.Id);
+                if (deadPlayerExist != null)
+                {
+                    deadPlayerExist.Sum();
+                }
+                else
+                {
+                    AddNewDeadPlayer(victim);
+                }
+                TotalKills++; //total_kills são os kills dos games, isso inclui mortes do <world>.
+                GeneratorStatistics.BecauseOfDeath(meansOfDeath, this);
             }
-            else
-            {
-                AddNewDeadPlayer(victim);
-            }
-            TotalKills++; //total_kills são os kills dos games, isso inclui mortes do <world>.
-            GeneratorStatistics.BecauseOfDeath(meansOfDeath, this);
         }
 
         public void AddDeathStatistics(KillsByMeans killsByMeans)

@@ -1,5 +1,4 @@
 ﻿using Quake.Entities;
-using Quake.Entities.Contracts;
 using Quake.Infrastructure.Contracts;
 using Quake.Services;
 using Quake.ValueObjects;

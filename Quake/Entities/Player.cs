@@ -17,7 +17,7 @@
             Name = name;
         }
 
-        public void Changed(string name)
+        public void ChangedName(string name)
         {
             Name = name;
         }
