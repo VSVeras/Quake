@@ -1,5 +1,4 @@
 ﻿using Quake.Persistence.Contracts;
-using Quake.Persistence.Database;
 using System;
 using System.Data.Entity;
 

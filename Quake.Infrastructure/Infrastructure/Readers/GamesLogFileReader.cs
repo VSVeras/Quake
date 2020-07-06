@@ -48,15 +48,19 @@ namespace Quake.Infrastructure.Infrastructure.Readers
                     case "InitGame":
                         currentGame = MappingGame(games);
                         break;
+
                     case "ClientConnect":
                         MappingPlayes(currentGame, row);
                         break;
+
                     case "ClientUserinfoChanged":
                         MappingChangedPlayerName(currentGame, row);
                         break;
+
                     case "Kill":
                         MappingKillPlayer(currentGame, row);
                         break;
+
                     default:
                         break;
                 }

@@ -14,7 +14,6 @@ namespace Quake.Persistence.Repository
             _uow = uow;
         }
 
-
         public void Save(List<Game> games)
         {
             using (var transaction = _uow.Current().Database.BeginTransaction())

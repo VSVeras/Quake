@@ -5,6 +5,7 @@
         decimal TotalKills { get; }
 
         void Subtract();
+
         void Sum();
     }
 }

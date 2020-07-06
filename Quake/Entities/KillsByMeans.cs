@@ -1,5 +1,4 @@
-﻿using System;
-using Quake.ValueObjects;
+﻿using Quake.ValueObjects;
 
 namespace Quake.Entities
 {

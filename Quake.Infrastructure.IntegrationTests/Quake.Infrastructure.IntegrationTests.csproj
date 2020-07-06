@@ -7,8 +7,8 @@
     <ProjectGuid>{97142DC4-9998-4009-98EE-1FC4F39CE08A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Quake.Infrastructure.IntegrationTest</RootNamespace>
-    <AssemblyName>Quake.Infrastructure.IntegrationTest</AssemblyName>
+    <RootNamespace>Quake.Infrastructure.IntegrationTests</RootNamespace>
+    <AssemblyName>Quake.Infrastructure.IntegrationTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

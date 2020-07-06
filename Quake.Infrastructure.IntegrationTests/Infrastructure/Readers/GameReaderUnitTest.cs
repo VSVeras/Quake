@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Quake.Infrastructure.UnitTests.Infrastructure.Readers
+namespace Quake.Infrastructure.IntegrationTests.Infrastructure.Readers
 {
     [TestClass]
     public class GameReaderUnitTest
