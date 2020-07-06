@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quake", "Quake\Quake.csproj", "{C8C120F1-D18B-4AC5-983C-9C3F6536CF8F}"
 EndProject
@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Game", "Game", "{0695865D-E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quake.Infrastructure", "Quake.Infrastructure\Quake.Infrastructure.csproj", "{D9190C1C-7316-4C94-ABCA-C9FEBBB6247F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quake.Infrastructure.UnitTests", "Quake.Infrastructure.UnitTests\Quake.Infrastructure.UnitTests.csproj", "{97142DC4-9998-4009-98EE-1FC4F39CE08A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quake.Infrastructure.IntegrationTest", "Quake.Infrastructure.UnitTests\Quake.Infrastructure.IntegrationTest.csproj", "{97142DC4-9998-4009-98EE-1FC4F39CE08A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Quake Tests", "Quake Tests", "{A16D55AA-0C61-4A5F-93FE-133E1B023D7B}"
 EndProject

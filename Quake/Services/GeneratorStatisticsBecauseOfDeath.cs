@@ -13,13 +13,12 @@ namespace Quake.Services
             if (killsByMeans != null)
             {
                 killsByMeans.Sum();
+                return;
             }
-            else
-            {
-                killsByMeans = new KillsByMeans(meansOfDeath);
-                killsByMeans.Sum();
-                game.AddDeathStatistics(killsByMeans);
-            }
+
+            killsByMeans = new KillsByMeans(meansOfDeath);
+            killsByMeans.Sum();
+            game.AddDeathStatistics(killsByMeans);
         }
     }
 }
