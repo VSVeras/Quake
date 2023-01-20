@@ -72,9 +72,9 @@ namespace Quake.UnitTests.Entities
             var totalPlayersExpected = 2;
             var killer = PlayerFactory.Default().WithIdAndName(1, "Isgalamido").Build();
             var victim = PlayerFactory.Default().WithIdAndName(2, "Dono da Bola").Build();
+            game.Add(killer);
 
             //act
-            game.Add(killer);
             game.Add(victim);
 
             //assert
@@ -179,9 +179,9 @@ namespace Quake.UnitTests.Entities
             var totalOfDeathsGroupedPerPlayer = 0m;
             var victim = PlayerFactory.Default().WithIdAndName(2, "Dono da Bola").Build();
             game.Add(victim);
+            game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             //act
-            game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
             game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             //assert
@@ -199,9 +199,9 @@ namespace Quake.UnitTests.Entities
             var victim = PlayerFactory.Default().WithIdAndName(2, "Dono da Bola").Build();
             game.Add(killer);
             game.Add(victim);
+            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             //act
-            game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
             game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             //assert
@@ -218,12 +218,12 @@ namespace Quake.UnitTests.Entities
             var victim = PlayerFactory.Default().WithIdAndName(2, "Dono da Bola").Build();
             game.Add(killer);
             game.Add(victim);
-
-            //act
             game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
             game.KillForMurder(killer, victim, MeansOfDeath.MOD_TRIGGER_HURT);
             game.KillForMurder(killer, victim, MeansOfDeath.MOD_BFG_SPLASH);
             game.KillByNaturalDeath(victim, MeansOfDeath.MOD_BFG_SPLASH);
+
+            //act
             game.KillByNaturalDeath(victim, MeansOfDeath.MOD_TRIGGER_HURT);
 
             //assert
